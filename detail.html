@@ -321,15 +321,56 @@
                 return;
             }
 
-            // Update page title
-            document.title = `${product.name} - Digicolours`;
+            // --- Dynamic SEO & Metadata Updates ---
+
+            // 1. Page Title
+            document.title = `${product.name} - Digicolours Printing Jakarta`;
+
+            // 2. Meta Description
+            // Use product specific description or fallback to a generic one
+            const metaDescription = document.querySelector('meta[name="description"]');
+            if (metaDescription) {
+                // Strip HTML tags for meta description if any
+                const pureTextDesc = product.description.replace(/<[^>]*>?/gm, '');
+                metaDescription.setAttribute("content", `Jasa ${product.name} berkualitas. ${pureTextDesc} Pesan online sekarang di Digicolours.`);
+            }
+
+            // 3. Meta Keywords
+            const metaKeywords = document.querySelector('meta[name="keywords"]');
+            if (metaKeywords && product.seoKeywords) {
+                metaKeywords.setAttribute("content", product.seoKeywords.join(", "));
+            }
+
+            // 4. Open Graph (Facebook/WhatsApp)
+            const ogTitle = document.querySelector('meta[property="og:title"]');
+            const ogDesc = document.querySelector('meta[property="og:description"]');
+            const ogImage = document.querySelector('meta[property="og:image"]');
+
+            if (ogTitle) ogTitle.setAttribute("content", `${product.name} - Digicolours Printing`);
+            if (ogDesc) ogDesc.setAttribute("content", product.description.substring(0, 150) + "...");
+            if (ogImage) ogImage.setAttribute("content", window.location.origin + "/" + product.image);
+
+            // 5. Canonical URL
+            let linkCanonical = document.querySelector('link[rel="canonical"]');
+            if (!linkCanonical) {
+                linkCanonical = document.createElement('link');
+                linkCanonical.setAttribute('rel', 'canonical');
+                document.head.appendChild(linkCanonical);
+            }
+            linkCanonical.setAttribute('href', window.location.href);
+
+            // 6. JSON-LD Structured Data (Product)
+            updateProductSchema(product);
+
+            // --- UI Updates ---
 
             // Update breadcrumb
             document.getElementById('breadcrumb-name').textContent = product.name;
 
             // Update product image
-            document.getElementById('product-image').src = product.image;
-            document.getElementById('product-image').alt = product.name;
+            const imgElement = document.getElementById('product-image');
+            imgElement.src = product.image;
+            imgElement.alt = product.name + " Termurah dan Berkualitas Jakarta"; // SEO friendly alt
 
             // Update product info
             document.getElementById('product-category').textContent = product.categoryLabel;
@@ -338,37 +379,89 @@
 
             // Update specs list
             const specsList = document.getElementById('product-specs');
-            specsList.innerHTML = product.specs.map(spec => `<li>${spec}</li>`).join('');
+            if (product.specs && product.specs.length > 0) {
+                specsList.innerHTML = product.specs.map(spec => `<li>${spec}</li>`).join('');
+            } else {
+                specsList.innerHTML = '';
+            }
+
 
             // Update details table
             const detailsContainer = document.getElementById('product-details');
-            detailsContainer.innerHTML = Object.entries(product.details).map(([key, value], index, arr) => `
-                <div class="flex justify-between ${index < arr.length - 1 ? 'border-b border-slate-200 pb-2' : ''}">
-                    <span class="text-slate-500">${key}</span>
-                    <span class="font-medium text-right">${value}</span>
-                </div>
-            `).join('');
+            if (product.details) {
+                detailsContainer.innerHTML = Object.entries(product.details).map(([key, value], index, arr) => `
+                    <div class="flex justify-between ${index < arr.length - 1 ? 'border-b border-slate-200 pb-2' : ''}">
+                        <span class="text-slate-500">${key}</span>
+                        <span class="font-medium text-right">${value}</span>
+                    </div>
+                `).join('');
+            } else {
+                detailsContainer.innerHTML = '<p class="text-slate-500 italic">Detail tidak tersedia.</p>';
+            }
 
             // Update WhatsApp button
-            const waMessage = encodeURIComponent(`Halo, saya ingin memesan: ${product.name}. Mohon info harga & waktu produksi.`);
-            document.getElementById('wa-button').href = `https://wa.me/6287779278899?text=${waMessage}`;
+            const waButton = document.getElementById('wa-button');
+            const waMessage = encodeURIComponent(`Halo Digicolours, saya tertarik dengan produk *${product.name}*. \n\nBisa minta info harga dan detail lebih lanjut? \n\nLink: ${window.location.href}`);
+            waButton.href = `https://wa.me/6287779278899?text=${waMessage}`;
 
             // Load related products
             loadRelatedProducts(product);
+        }
+
+        function updateProductSchema(product) {
+            // Remove existing product schema if any (to avoid duplicates on navigation if we had client-side routing, though here it's full reload mostly)
+            const existingScript = document.getElementById('dynamic-product-schema');
+            if (existingScript) existingScript.remove();
+
+            const schema = {
+                "@context": "https://schema.org/",
+                "@type": "Product",
+                "name": product.name,
+                "image": [
+                    window.location.origin + "/" + product.image
+                ],
+                "description": product.description,
+                "brand": {
+                    "@type": "Brand",
+                    "name": "Digicolours"
+                },
+                "offers": {
+                    "@type": "Offer",
+                    "url": window.location.href,
+                    "priceCurrency": "IDR",
+                    "price": "0", // Price is 0 or Call for Price
+                    "availability": "https://schema.org/InStock",
+                    "seller": {
+                        "@type": "Organization",
+                        "name": "Digicolours Printing"
+                    }
+                }
+            };
+
+            const script = document.createElement('script');
+            script.id = 'dynamic-product-schema';
+            script.type = 'application/ld+json';
+            script.text = JSON.stringify(schema);
+            document.head.appendChild(script);
         }
 
         function loadRelatedProducts(currentProduct) {
             const relatedProducts = getRelatedProducts(currentProduct.id, 4);
             const container = document.getElementById('related-products');
 
+            if (relatedProducts.length === 0) {
+                container.innerHTML = '<p class="col-span-full text-center text-slate-500">Tidak ada produk terkait.</p>';
+                return;
+            }
+
             container.innerHTML = relatedProducts.map(product => `
                 <a href="detail.html?id=${product.id}" class="bg-white rounded-xl shadow-sm hover:shadow-md transition duration-300 border border-slate-100 overflow-hidden flex flex-col group">
                     <div class="aspect-[4/3] bg-slate-50 overflow-hidden">
-                        <img alt="${product.name}" class="w-full h-full object-contain p-3 group-hover:scale-105 transition duration-500" src="${product.image}" />
+                        <img alt="${product.name}" class="w-full h-full object-contain p-3 group-hover:scale-105 transition duration-500" src="${product.image}" loading="lazy" />
                     </div>
                     <div class="p-4 flex flex-col flex-grow text-center">
                         <h3 class="text-sm md:text-base font-bold text-slate-900 mb-1 line-clamp-2">${product.name}</h3>
-                        <p class="text-xs text-slate-500 mb-3 line-clamp-2 hidden sm:block">${product.specs[0] || ''}</p>
+                        <p class="text-xs text-slate-500 mb-3 line-clamp-2 hidden sm:block">${product.specs && product.specs[0] ? product.specs[0] : ''}</p>
                         <div class="mt-auto">
                             <span class="inline-flex items-center justify-center px-4 py-1.5 border-2 border-primary text-primary text-xs font-semibold rounded-lg group-hover:bg-primary group-hover:text-white transition">
                                 Lihat Detail
