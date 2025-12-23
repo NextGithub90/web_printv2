@@ -11,9 +11,13 @@ function waLink(number, product){
 function attachOrderButtons(){
   const buttons = document.querySelectorAll('.btn-order');
   buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const product = btn.dataset.product || 'Produk Digital Printing';
-      window.open(waLink(WA1, product), '_blank');
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent card click from triggering
+      // Find the parent product card to get the product ID
+      const card = btn.closest('.product-card');
+      if(card && card.dataset.productId){
+        window.location.href = `detail.html?id=${card.dataset.productId}`;
+      }
     });
   });
 }
