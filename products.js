@@ -447,7 +447,31 @@ const PRODUCTS = {
       "Layanan": "Express"
     },
     description: "Pusat Fotocopy (Copy Center) cepat dan murah di Jakarta. Melayani fotocopy hitam putih (BW) dan warna hingga ukuran A3. Mesin kecepatan tinggi siap menangani dokumen dalam jumlah banyak secara kilat.",
-    relatedProducts: ["kop-surat", "jilid-softcover", "jilid-hardcover"]
+    relatedProducts: ["kop-surat", "jilid-softcover", "stempel-laser-warna"]
+  },
+  "stempel-laser-warna": {
+    id: "stempel-laser-warna",
+    name: "Stempel Laser Warna",
+    category: "cetak-offset",
+    categoryLabel: "Stempel & Cap",
+    image: "img/stempel-laser-warna.jpeg",
+    seoKeywords: ["stempel laser warna", "stempel warna custom", "cap warna perusahaan", "stempel flash warna", "bikin stempel jakarta", "stempel otomatis warna"],
+    specs: [
+      "Tersedia dalam berbagai model bentuk dan ukuran lengkap",
+      "Tinta berkualitas tahan hingga ±300x cap",
+      "Stempel dapat di isi ulang/refill",
+      "Desain bisa custom sesuai kebutuhan Anda",
+      "Ukuran Kotak / Oval / Bulat"
+    ],
+    details: {
+      "Jenis": "Laser Flash Stamp",
+      "Warna Tinta": "Multi Warna",
+      "Daya Tahan": "±300x cap",
+      "Bentuk": "Kotak / Oval / Bulat",
+      "Waktu Pengerjaan": "1-2 Hari Kerja"
+    },
+    description: "Stempel Laser Warna berkualitas tinggi dengan hasil cap berwarna yang tajam dan jelas. Teknologi laser modern menghasilkan detail logo dan teks yang presisi. Tinta tahan lama hingga ±300x cap dan bisa di-refill. Tersedia berbagai bentuk (kotak, oval, bulat) dan ukuran sesuai kebutuhan perusahaan Anda.",
+    relatedProducts: ["fotocopy", "kartu-nama", "kop-surat"]
   },
   "event-desk-standard": {
     id: "event-desk-standard",
@@ -469,30 +493,9 @@ const PRODUCTS = {
       "Termasuk": "Tas Kanvas"
     },
     description: "Event Desk Standard adalah meja promosi portable yang terbuat dari bahan PVC berkualitas. Ringan, kokoh, dan mudah dibongkar pasang dalam waktu singkat. Solusi praktis dan ekonomis untuk booth pameran, sampling produk, atau bazar.",
-    relatedProducts: ["event-desk-premium", "pop-up-table", "easy-counter"]
+    relatedProducts: ["pop-up-table", "easy-counter", "backdrop-system"]
   },
-  "event-desk-premium": {
-    id: "event-desk-premium",
-    name: "Event Desk Premium",
-    category: "print-indoor",
-    categoryLabel: "Display & Booth",
-    image: "img/event-desk-premium.jpeg",
-    seoKeywords: ["event desk premium", "meja booth kuat", "booth portable kokoh", "meja sampling premium", "display pameran jakarta"],
-    specs: [
-      "Plastik PVC Import",
-      "Anti Air",
-      "Max lebih 48kilo",
-      "Tas Kanvas"
-    ],
-    details: {
-      "Material": "Plastik PVC Import Premium",
-      "Kapasitas": "Lebih dari 48kg",
-      "Fitur": "Anti Air",
-      "Termasuk": "Tas Kanvas"
-    },
-    description: "Upgrade tampilan booth Anda dengan Event Desk Premium. Material PVC lebih tebal dan konstruksi lebih kokoh dibanding tipe standar, mampu menahan beban lebih berat. Pilihan tepat untuk penggunaan jangka panjang dan display produk berat.",
-    relatedProducts: ["event-desk-standard", "pop-up-table", "easy-counter"]
-  },
+
   "pop-up-table": {
     id: "pop-up-table",
     name: "Pop Up Table",
