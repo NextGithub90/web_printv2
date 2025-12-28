@@ -164,12 +164,15 @@ const PRODUCTS = {
     specs: [
       "isi 1 lembar 12 bulan : AC 260 gsm",
       "isi 1 lembar 6 bulan : AC 260 gsm",
+      "isi 1 lembar 4 bulan : AP 120/150 gsm",
+      "isi 1 lembar 2 bulan : AP 120/150 gsm",
+      "isi 1 lembar 1 bulan : AP 120/150 gsm",
       "ukuran kertas ( A3+ 32 x 48cm )"
     ],
     details: {
       "Ukuran": "A3+ (32 x 48cm)",
-      "Material": "Art Carton 260gsm",
-      "Varian": "12 bulan / 6 bulan per lembar",
+      "Material": "Art Carton 260gsm / Art Paper 120-150gsm",
+      "Varian": "1/2/4/6/12 bulan per lembar",
       "Waktu Pengerjaan": "2-3 Hari Kerja"
     },
     description: "Cetak Kalender Dinding custom dengan foto dan desain perusahaan Anda. Sarana promosi efektif sepanjang tahun. Menggunakan bahan Art Carton tebal berkualitas. Tersedia template kalender nasional lengkap.",
@@ -356,8 +359,7 @@ const PRODUCTS = {
     image: "img/st_oneway.jpeg",
     seoKeywords: ["stiker one way vision", "stiker kaca mobil", "stiker kaca kantor", "branding kaca ruko", "perforated sticker"],
     specs: [
-      "Tempel Di Kaca Ruko / Mobil",
-      "Satin / One Way / Flexi"
+      "Tempel Di Kaca Ruko / Mobil"
     ],
     details: {
       "Material": "Satin / One Way / Flexi",
@@ -376,8 +378,8 @@ const PRODUCTS = {
     image: "img/print-outdoor.jpg",
     seoKeywords: ["cetak spanduk murah", "cetak banner outdoor", "bikin baliho", "digital printing outdoor", "cetak umbul umbul"],
     specs: [
-      "Bisa di Sudut Rounded",
-      "Laminasi Doff / Glossy"
+      "Satin / One Way / Flexi",
+      "Cetak Banner / Spanduk"
     ],
     details: {
       "Material": "Flexi / Vinyl Outdoor",
@@ -391,7 +393,7 @@ const PRODUCTS = {
   "plotter-a0": {
     id: "plotter-a0",
     name: "Plotter A0 Warna",
-    category: "print-a3",
+    category: "plotter",
     categoryLabel: "Cetak Plotter",
     image: "img/Plotter-A0-Warna.jpeg",
     seoKeywords: ["cetak plotter a0", "print a0 murah", "plotter peta a1", "cetak gambar teknik", "jasa plot kalkir"],
@@ -431,7 +433,7 @@ const PRODUCTS = {
   "fotocopy": {
     id: "fotocopy",
     name: "Fotocopy",
-    category: "cetak-offset",
+    category: "fotocopy",
     categoryLabel: "Copy Center",
     image: "img/fotocopy.png",
     seoKeywords: ["fotocopy murah jakarta", "jasa fotocopy 24 jam", "copy warna a3", "fotocopy dokumen banyak", "jilid fotocopy"],
@@ -451,8 +453,8 @@ const PRODUCTS = {
   },
   "stempel-laser-warna": {
     id: "stempel-laser-warna",
-    name: "Stempel Laser Warna",
-    category: "cetak-offset",
+    name: "Cetak Stempel Custom Flash",
+    category: "stempel",
     categoryLabel: "Stempel & Cap",
     image: "img/stempel-laser-warna.jpeg",
     seoKeywords: ["stempel laser warna", "stempel warna custom", "cap warna perusahaan", "stempel flash warna", "bikin stempel jakarta", "stempel otomatis warna"],
@@ -569,7 +571,7 @@ const PRODUCTS = {
   "mug": {
     id: "mug",
     name: "Mug",
-    category: "print-a3",
+    category: "merchandise",
     categoryLabel: "Merchandise & Souvenir",
     image: "img/mug.jpeg",
     seoKeywords: ["cetak mug custom", "mug bunglon", "sablon mug jakarta", "souvenir mug murah", "mug printing"],
@@ -590,7 +592,7 @@ const PRODUCTS = {
   "payung": {
     id: "payung",
     name: "Payung",
-    category: "print-a3",
+    category: "merchandise",
     categoryLabel: "Merchandise & Souvenir",
     image: "img/payung.jpeg",
     seoKeywords: ["cetak payung promosi", "sablon payung jakarta", "payung golf custom", "payung souvenir", "grosir payung promosi"],
@@ -634,7 +636,7 @@ const PRODUCTS = {
   "tumbler": {
     id: "tumbler",
     name: "Tumbler",
-    category: "print-a3",
+    category: "merchandise",
     categoryLabel: "Merchandise & Souvenir",
     image: "img/tumbler.jpeg",
     seoKeywords: ["cetak tumbler custom", "tumbler stainless grafir", "uv print tumbler", "souvenir tumbler", "botol minum custom"],
@@ -654,7 +656,7 @@ const PRODUCTS = {
   "shopping-bag": {
     id: "shopping-bag",
     name: "Shopping Bag",
-    category: "print-a3",
+    category: "merchandise",
     categoryLabel: "Merchandise & Packaging",
     image: "img/shoping-back.jpeg",
     seoKeywords: ["cetak goodie bag", "tas spunbond custom", "sablon tas belanja", "tas seminar kit", "goodie bag murah jakarta"],
