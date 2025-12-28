@@ -383,7 +383,7 @@ const PRODUCTS = {
     ],
     details: {
       "Material": "Flexi / Vinyl Outdoor",
-      "Finishing": "Laminasi Doff / Glossy",
+      "Finishing": "mata ayam / selongsong mas",
       "Ketahanan": "Tahan Cuaca",
       "Ukuran": "Custom"
     },
